@@ -196,7 +196,7 @@ async def plan(client, message):
 
 🚀 Exclusive Premium Features:  
 ✅ No need to verify every 3 hours ⏳  
-✅ Bulk mode: Upload up to 300 files 📂  
+✅ Bulk mode: Upload up to 500 files 📂  
 ✅ No 300-second waiting time
 
 🔟 10-Day Plan  
