@@ -56,12 +56,12 @@
     "WEBSITE_URL": {
       "description": "Enter shortener website domain eg upshrink.com",
       "value": "shrinkforearn.in",
-      "required": false
+      "required": true
     },
     "AD_API": {
       "description": "Batch size for premium users",
       "value": "b68e50d0e38d6e759faa2375a5ea2db4f7ec15a8",
-      "required": false
+      "required": true
     },
     
     "SUDO_USERS": {
