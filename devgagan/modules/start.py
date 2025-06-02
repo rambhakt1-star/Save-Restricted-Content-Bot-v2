@@ -192,8 +192,8 @@ async def terms(client, message):
 @app.on_message(filters.command("plan") & filters.private)
 async def plan(client, message):
     plan_text = (
-       "> 💰 **Premium Price**:\n\n Starting from 20 rs for 10 days payment no 9329548617 INR accepted via **__Amazon Gift Card__** (terms and conditions apply).\n"
-        "📥 **Download Limit**: Users can download up to 100,000 files in a single batch command.\n"
+       "> 💰 **Premium Price**:\n\n Starting from 50 rs for 10 days payment INR accepted  (terms and conditions apply).\n"
+        "📥 **Download Limit**: Users can download up to 500 files in a single batch command.\n"
         "🛑 **Batch**: You will get two modes /bulk and /batch.\n"
         "   - Users are advised to wait for the process to automatically cancel before proceeding with any downloads or uploads.\n\n"
         "📜 **Terms and Conditions**: For further details and complete terms and conditions, please send /terms.\n" 
