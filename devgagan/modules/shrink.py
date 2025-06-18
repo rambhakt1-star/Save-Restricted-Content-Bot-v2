@@ -65,83 +65,97 @@ async def is_user_verified(user_id):
  
 @app.on_message(filters.command("start"))
 async def token_handler(client, message):
-    """Handle the /token command."""
+    """Handle the /start command."""
     join = await subscribe(client, message)
     if join == 1:
         return
-    chat_id = "save_restricted_content_bots"
-    msg = await app.get_messages(chat_id, 796)
-    user_id = message.chat.id
+
+    user = message.from_user
+    user_mention = f"[{user.first_name}](tg://user?id={user.id})"
+
+    # Random image selection
+    images = [
+        "https://myappme.shop/img/file_224.jpg",
+        "https://myappme.shop/img/file_225.jpg",
+        "https://myappme.shop/img/file_227.jpg",
+        "https://myappme.shop/img/file_253.jpg",
+        "https://myappme.shop/img/file_254.jpg",
+        "https://myappme.shop/img/file_255.jpg",
+        "https://myappme.shop/img/file_256.jpg",
+        "https://myappme.shop/img/file_257.jpg"
+    ]
+    image_url = random.choice(images)
+
+    join_button = InlineKeyboardButton("Join Channel", url="https://t.me/Team_Sonu1")
+    premium = InlineKeyboardButton("Get Premium", url="https://t.me/sonuporsa")
+    keyboard = InlineKeyboardMarkup([
+        [join_button],
+        [premium]
+    ])
+
     if len(message.command) <= 1:
-        image_url = "https://postimage.me/images/2025/05/02/IMG_20250502_094225_618.jpg"
-        join_button = InlineKeyboardButton("Join Channel", url="https://t.me/Team_Sonu1")
-        premium = InlineKeyboardButton("Get Premium", url="https://t.me/sonuporsa")   
-        keyboard = InlineKeyboardMarkup([
-            [join_button],   
-            [premium]    
-        ])
-         
         await message.reply_photo(
-            msg.photo.file_id,
+            photo=image_url,
             caption=(
-                "Hi 👋 Welcome, intro...?\n\n"
+                f"Hi 👋 {user_mention}, welcome!\n\n"
                 "✳️ I can save posts from channels or groups where forwarding is off.\n"
                 "✳️ Simply send the post link of a public channel. For private channels, do /login. Send /help to know more."
             ),
             reply_markup=keyboard
         )
-        return  
- 
+        return
+
     param = message.command[1] if len(message.command) > 1 else None
-    freecheck = await chk_user(message, user_id)
+    freecheck = await chk_user(message, user.id)
     if freecheck != 1:
         await message.reply("You are a premium user no need of token 😉")
         return
- 
-     
+
     if param:
-        if user_id in Param and Param[user_id] == param:
-             
+        if user.id in Param and Param[user.id] == param:
             await token.insert_one({
-                "user_id": user_id,
+                "user_id": user.id,
                 "param": param,
                 "created_at": datetime.utcnow(),
                 "expires_at": datetime.utcnow() + timedelta(hours=3),
             })
-            del Param[user_id]   
+            del Param[user.id]
             await message.reply("✅ You have been verified successfully! Enjoy your session for next 3 hours.")
-            return
         else:
             await message.reply("❌ Invalid or expired verification link. Please generate a new token.")
-            return
- 
+
+
 @app.on_message(filters.command("token"))
 async def smart_handler(client, message):
     user_id = message.chat.id
-     
+
     freecheck = await chk_user(message, user_id)
     if freecheck != 1:
         await message.reply("You are a premium user no need of token 😉")
         return
+
     if await is_user_verified(user_id):
         await message.reply("✅ Your free session is already active enjoy!")
     else:
-         
         param = await generate_random_param()
-        Param[user_id] = param   
- 
-         
-        deep_link = f"https://t.me/{client.me.username}?start={param}"
- 
-         
+        Param[user_id] = param
+
+        bot_user = await client.get_me()
+        deep_link = f"https://t.me/{bot_user.username}?start={param}"
+
         shortened_url = await get_shortened_url(deep_link)
         if not shortened_url:
             await message.reply("❌ Failed to generate the token link. Please try again.")
             return
- 
-         
+
         button = InlineKeyboardMarkup(
             [[InlineKeyboardButton("Verify the token now...", url=shortened_url)]]
         )
-        await message.reply("Click the button below to verify your free access token: \n\n> What will you get ? \n1. No time bound upto 3 hours \n2. Batch command limit will be FreeLimit + 20 \n3. All functions unlocked", reply_markup=button)
- 
+        await message.reply(
+            "Click the button below to verify your free access token:\n\n"
+            "> What will you get?\n"
+            "1. No time bound upto 3 hours\n"
+            "2. Batch command limit will be FreeLimit + 20\n"
+            "3. All functions unlocked",
+            reply_markup=button
+ )
