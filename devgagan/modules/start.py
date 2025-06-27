@@ -188,74 +188,79 @@ async def terms(client, message):
     )
     await message.reply_text(terms_text, reply_markup=buttons)
  
- 
-@app.on_message(filters.command("plan") & filters.private)
+ @app.on_message(filters.command("plan") & filters.private)
 async def plan(client, message):
     plan_text = (
-        "💎 **Upgrade to Premium** 💎\n\n"
-        "🚀 **Exclusive Premium Features**\n"
-        "✅ No need to verify every 3 hours ⏳\n"
-        "✅ Bulk mode: Upload up to 500 files 📂\n"
-        "✅ Priority Admin Support\n"
-        "✅ Unlimited Leeches\n\n"
-        
-        "🪙 **10-Day Plan**\n"
-        "💰 Price: ₹50 🇮🇳 / **$0.60 USDT**\n\n"
-        
-        "🪙 **20-Day Plan**\n"
-        "💰 Price: ₹90 🇮🇳 / **$1.08 USDT**\n\n"
-        
-        "🪙 **Monthly Plan**\n"
-        "💰 Price: ₹130 🇮🇳 / **$1.56 USDT**\n\n"
-
-        "📌 **Payment Methods**:\n"
-        "- QR Code: [Click Here for QR](https://myappme.shop/img/file_200.jpg)\n"
-        "- For International payment, Contact Admin\n\n"
-        
-        "📤 **After Payment**:\n"
-        "1️⃣ Send a payment screenshot below 👇\n"
-        "2️⃣ Contact: Admin to complete your purchase 🤝\n\n"
-        
-        "💌 We're here for you! 💕"
+        "💎 **Upgrade to Premium Plans** 💎\n\n"
+        "Choose a plan to see full details:\n\n"
+        "🔹 Basic Plan – 300 files\n"
+        "🔸 Medium Plan – 500 files\n"
+        "🔶 Pro Plan – 1000 files\n\n"
+        "👇 Tap a button below to view plans:"
     )
 
     buttons = InlineKeyboardMarkup(
         [
+            [InlineKeyboardButton("🔹 Buy Basic", callback_data="buy_basic")],
+            [InlineKeyboardButton("🔸 Buy Medium", callback_data="buy_medium")],
+            [InlineKeyboardButton("🔶 Buy Pro", callback_data="buy_pro")],
             [InlineKeyboardButton("📜 See Terms", callback_data="see_terms")],
-            [InlineKeyboardButton("🧾 Get QR Code", url="https://myappme.shop/img/file_200.jpg")],
             [InlineKeyboardButton("💬 Contact Now", url="https://t.me/sonuporsa")],
         ]
     )
-    await message.reply_text(plan_text, reply_markup=buttons, disable_web_page_preview=True)
+
+    await message.reply_text(plan_text, reply_markup=buttons)
 
 
+# Callback: See Plan (also shown via "see_plan" button if used elsewhere)
 @app.on_callback_query(filters.regex("see_plan"))
 async def see_plan(client, callback_query):
     plan_text = (
+        "💎 **Upgrade to Premium Plans** 💎\n\n"
+        "Choose a plan to see full details:\n\n"
+        "🔹 Basic Plan – 300 files\n"
+        "🔸 Medium Plan – 500 files\n"
+        "🔶 Pro Plan – 1000 files\n\n"
+        "👇 Tap a button below to view plans:"
+    )
+
+    buttons = InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("🔹 Buy Basic", callback_data="buy_basic")],
+            [InlineKeyboardButton("🔸 Buy Medium", callback_data="buy_medium")],
+            [InlineKeyboardButton("🔶 Buy Pro", callback_data="buy_pro")],
+            [InlineKeyboardButton("📜 See Terms", callback_data="see_terms")],
+            [InlineKeyboardButton("💬 Contact Now", url="https://t.me/sonuporsa")],
+        ]
+    )
+
+    await callback_query.message.edit_text(plan_text, reply_markup=buttons)
+
+
+# Callback: Buy Basic Plan
+@app.on_callback_query(filters.regex("buy_basic"))
+async def buy_basic_plan(client, callback_query):
+    text = (
         "💎 **Upgrade to Premium** 💎\n\n"
-        "🚀 **Exclusive Premium Features**\n"
+        "🚀 **Exclusive Premium Basic Features**\n"
         "✅ No need to verify every 3 hours ⏳\n"
-        "✅ Bulk mode: Upload up to 500 files 📂\n"
-        "✅ Priority Admin Support\n"
+        "✅ Bulk mode: Upload up to 300 files 📂\n"
         "✅ Unlimited Leeches\n\n"
-        
+
         "🪙 **10-Day Plan**\n"
-        "💰 Price: ₹50 🇮🇳 / **$0.60 USDT**\n\n"
-        
+        "💰 Rs 30 🇮🇳 / **$0.36 USDT**\n\n"
         "🪙 **20-Day Plan**\n"
-        "💰 Price: ₹90 🇮🇳 / **$1.08 USDT**\n\n"
-        
+        "💰 Rs 60 🇮🇳 / **$0.72 USDT**\n\n"
         "🪙 **Monthly Plan**\n"
-        "💰 Price: ₹130 🇮🇳 / **$1.56 USDT**\n\n"
+        "💰 Rs 90 🇮🇳 / **$1.08 USDT**\n\n"
 
         "📌 **Payment Methods**:\n"
         "- QR Code: [Click Here for QR](https://myappme.shop/img/file_200.jpg)\n"
         "- For International payment, Contact Admin\n\n"
-        
+
         "📤 **After Payment**:\n"
         "1️⃣ Send a payment screenshot below 👇\n"
         "2️⃣ Contact: Admin to complete your purchase 🤝\n\n"
-        
         "💌 We're here for you! 💕"
     )
 
@@ -264,6 +269,88 @@ async def see_plan(client, callback_query):
             [InlineKeyboardButton("📜 See Terms", callback_data="see_terms")],
             [InlineKeyboardButton("🧾 Get QR Code", url="https://myappme.shop/img/file_200.jpg")],
             [InlineKeyboardButton("💬 Contact Now", url="https://t.me/sonuporsa")],
+            [InlineKeyboardButton("⬅️ Back to Plans", callback_data="see_plan")],
         ]
     )
-    await callback_query.message.edit_text(plan_text, reply_markup=buttons, disable_web_page_preview=True)
+
+    await callback_query.message.edit_text(text, reply_markup=buttons, disable_web_page_preview=True)
+
+
+# Callback: Buy Medium Plan
+@app.on_callback_query(filters.regex("buy_medium"))
+async def buy_medium_plan(client, callback_query):
+    text = (
+        "💎 **Upgrade to Premium** 💎\n\n"
+        "🚀 **Exclusive Premium Medium Features**\n"
+        "✅ No need to verify every 3 hours ⏳\n"
+        "✅ Bulk mode: Upload up to 500 files 📂\n"
+        "✅ Priority Admin Support\n"
+        "✅ Unlimited Leeches\n\n"
+
+        "🪙 **10-Day Plan**\n"
+        "💰 Rs 50 🇮🇳 / **$0.60 USDT**\n\n"
+        "🪙 **20-Day Plan**\n"
+        "💰 Rs 100 🇮🇳 / **$1.20 USDT**\n\n"
+        "🪙 **Monthly Plan**\n"
+        "💰 Rs 130 🇮🇳 / **$1.56 USDT**\n\n"
+
+        "📌 **Payment Methods**:\n"
+        "- QR Code: [Click Here for QR](https://myappme.shop/img/file_200.jpg)\n"
+        "- For International payment, Contact Admin\n\n"
+
+        "📤 **After Payment**:\n"
+        "1️⃣ Send a payment screenshot below 👇\n"
+        "2️⃣ Contact: Admin to complete your purchase 🤝\n\n"
+        "💌 We're here for you! 💕"
+    )
+
+    buttons = InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("📜 See Terms", callback_data="see_terms")],
+            [InlineKeyboardButton("🧾 Get QR Code", url="https://myappme.shop/img/file_200.jpg")],
+            [InlineKeyboardButton("💬 Contact Now", url="https://t.me/sonuporsa")],
+            [InlineKeyboardButton("⬅️ Back to Plans", callback_data="see_plan")],
+        ]
+    )
+
+    await callback_query.message.edit_text(text, reply_markup=buttons, disable_web_page_preview=True)
+
+
+# Callback: Buy Pro Plan
+@app.on_callback_query(filters.regex("buy_pro"))
+async def buy_pro_plan(client, callback_query):
+    text = (
+        "💎 **Upgrade to Premium** 💎\n\n"
+        "🚀 **Exclusive Premium Pro Features**\n"
+        "✅ No need to verify every 3 hours ⏳\n"
+        "✅ Bulk mode: Upload up to 1000 files 📂\n"
+        "✅ Priority Admin Support\n"
+        "✅ Unlimited Leeches\n\n"
+
+        "🪙 **10-Day Plan**\n"
+        "💰 Rs 100 🇮🇳 / **$1.20 USDT**\n\n"
+        "🪙 **20-Day Plan**\n"
+        "💰 Rs 200 🇮🇳 / **$2.40 USDT**\n\n"
+        "🪙 **Monthly Plan**\n"
+        "💰 Rs 280 🇮🇳 / **$3.36 USDT**\n\n"
+
+        "📌 **Payment Methods**:\n"
+        "- QR Code: [Click Here for QR](https://myappme.shop/img/file_200.jpg)\n"
+        "- For International payment, Contact Admin\n\n"
+
+        "📤 **After Payment**:\n"
+        "1️⃣ Send a payment screenshot below 👇\n"
+        "2️⃣ Contact: Admin to complete your purchase 🤝\n\n"
+        "💌 We're here for you! 💕"
+    )
+
+    buttons = InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("📜 See Terms", callback_data="see_terms")],
+            [InlineKeyboardButton("🧾 Get QR Code", url="https://myappme.shop/img/file_200.jpg")],
+            [InlineKeyboardButton("💬 Contact Now", url="https://t.me/sonuporsa")],
+            [InlineKeyboardButton("⬅️ Back to Plans", callback_data="see_plan")],
+        ]
+    )
+
+    await callback_query.message.edit_text(text, reply_markup=buttons, disable_web_page_preview=True)
