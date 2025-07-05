@@ -251,7 +251,7 @@ async def buy_basic_plan(client, callback_query):
         "💰 Rs 90 🇮🇳 / **$1.08 USDT**\n\n"
 
         "📌 **Payment Methods**:\n"
-        "- QR Code: [Click Here for QR](https://myappme.shop/img/file_200.jpg)\n"
+        "- QR Code: [Click Here for QR](https://ar-hosting.pages.dev/1751282168015.jpg)\n"
         "- For International payment, Contact Admin\n\n"
 
         "📤 **After Payment**:\n"
@@ -262,7 +262,7 @@ async def buy_basic_plan(client, callback_query):
 
     buttons = InlineKeyboardMarkup(
         [
-            [InlineKeyboardButton("🧾 Get QR Code", url="https://myappme.shop/img/file_200.jpg")],
+            [InlineKeyboardButton("🧾 Get QR Code", url="https://ar-hosting.pages.dev/1751282168015.jpg")],
             [InlineKeyboardButton("💬 Contact Now", url="https://t.me/sonuporsa")],
             [InlineKeyboardButton("⬅️ Back to Plans", callback_data="see_plan")],
         ]
@@ -290,7 +290,7 @@ async def buy_medium_plan(client, callback_query):
         "💰 Rs 130 🇮🇳 / **$1.56 USDT**\n\n"
 
         "📌 **Payment Methods**:\n"
-        "- QR Code: [Click Here for QR](https://myappme.shop/img/file_200.jpg)\n"
+        "- QR Code: [Click Here for QR](https://ar-hosting.pages.dev/1751282168015.jpg)\n"
         "- For International payment, Contact Admin\n\n"
 
         "📤 **After Payment**:\n"
@@ -301,7 +301,7 @@ async def buy_medium_plan(client, callback_query):
 
     buttons = InlineKeyboardMarkup(
         [
-            [InlineKeyboardButton("🧾 Get QR Code", url="https://myappme.shop/img/file_200.jpg")],
+            [InlineKeyboardButton("🧾 Get QR Code", url="https://ar-hosting.pages.dev/1751282168015.jpg")],
             [InlineKeyboardButton("💬 Contact Now", url="https://t.me/sonuporsa")],
             [InlineKeyboardButton("⬅️ Back to Plans", callback_data="see_plan")],
         ]
@@ -329,7 +329,7 @@ async def buy_pro_plan(client, callback_query):
         "💰 Rs 280 🇮🇳 / **$3.36 USDT**\n\n"
 
         "📌 **Payment Methods**:\n"
-        "- QR Code: [Click Here for QR](https://myappme.shop/img/file_200.jpg)\n"
+        "- QR Code: [Click Here for QR](https://ar-hosting.pages.dev/1751282168015.jpg)\n"
         "- For International payment, Contact Admin\n\n"
 
         "📤 **After Payment**:\n"
@@ -340,7 +340,7 @@ async def buy_pro_plan(client, callback_query):
 
     buttons = InlineKeyboardMarkup(
         [
-            [InlineKeyboardButton("🧾 Get QR Code", url="https://myappme.shop/img/file_200.jpg")],
+            [InlineKeyboardButton("🧾 Get QR Code", url="https://ar-hosting.pages.dev/1751282168015.jpg")],
             [InlineKeyboardButton("💬 Contact Now", url="https://t.me/sonuporsa")],
             [InlineKeyboardButton("⬅️ Back to Plans", callback_data="see_plan")],
         ]
