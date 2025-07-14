@@ -67,8 +67,6 @@ help_pages = [
         "📝 **Bot Commands Overview (1/2)**:\n\n"
         "🆕. **/id**\n"
         "> To Find Your id/channel id/Group id\n\n"
-        "🆕2. **/guide**\n"
-        "> Learn How To use\n\n"
         "1. **/add userID**\n"
         "> Add user to premium (Owner only)\n\n"
         "2. **/rem userID**\n"
