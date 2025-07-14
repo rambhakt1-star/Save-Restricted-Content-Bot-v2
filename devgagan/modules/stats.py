@@ -100,3 +100,4 @@ async def stats(client, message):
 🎨 **Python Version**: `{sys.version.split()[0]}`
 📑 **Mongo Version**: `{motor.version}`
 """)
+
