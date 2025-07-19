@@ -25,7 +25,7 @@ from devgagan.core.mongo.plans_db import premium_users
 from pyrogram.types import Message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from pyrogram.enums import ChatType
-from telegram import ParseMode
+from pyrogram.enums import ParseMode
 
 
 @app.on_message(filters.command("id"))
