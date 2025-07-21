@@ -672,7 +672,7 @@ async def callback_query_handler(event):
         await event.respond('Please send the photo you want to set as the thumbnail.')
     
     elif event.data == b'pdfwt':
-        await event.respond("This feature is not available yet in public repo...")
+        await event.respond("This feature is Under Development 😊...")
         return
 
     elif event.data == b'uploadmethod':
@@ -684,18 +684,18 @@ async def callback_query_handler(event):
 
         # Display the buttons for selecting the upload method
         buttons = [
-            [Button.inline(f"Pyrogram v2{pyrogram_check}", b'pyrogram')],
-            [Button.inline(f"SpyLib v1 ⚡{telethon_check}", b'telethon')]
+            [Button.inline(f"Pyrogram ⛈️ {pyrogram_check}", b'pyrogram')],
+            [Button.inline(f"Telethone⚡{telethon_check}", b'telethon')]
         ]
-        await event.edit("Choose your preferred upload method:\n\n__**Note:** **SpyLib ⚡**, built on Telethon(base), by Team SPY still in beta.__", buttons=buttons)
+        await event.edit("Choose your preferred upload method:\n\n__**Note:** **Pyrogram ⚡**, is faster than Telethone 😊.__", buttons=buttons)
 
     elif event.data == b'pyrogram':
         save_user_upload_method(user_id, "Pyrogram")
-        await event.edit("Upload method set to **Pyrogram** ✅")
+        await event.edit("Upload method set to **Pyrogram ⛈️** ✅")
 
     elif event.data == b'telethon':
         save_user_upload_method(user_id, "Telethon")
-        await event.edit("Upload method set to **SpyLib ⚡\n\nThanks for choosing this library as it will help me to analyze the error raise issues .** ✅")        
+        await event.edit("Upload method set to **Telethone ⚡**✅")      
         
     elif event.data == b'reset':
         try:
@@ -898,7 +898,7 @@ async def handle_large_file(file, sender, edit, caption):
         if freecheck == 1:
             reply_markup = InlineKeyboardMarkup(
                 [
-                    [InlineKeyboardButton("💎 Get Premium to Forward", url="https://t.me/kingofpatal")]
+                    [InlineKeyboardButton("💎 Get Premium to Forward", url="https://t.me/sonuporsa")]
                 ]
             )
             await app.copy_message(
