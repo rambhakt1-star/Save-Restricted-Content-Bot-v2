@@ -76,14 +76,15 @@ async def token_handler(client, message):
 
     # Random image selection
     images = [
-        "https://ar-hosting.pages.dev/1751519808272.jpg",
-        "https://ar-hosting.pages.dev/1751519809076.jpg",
-        "https://ar-hosting.pages.dev/1751519807441.jpg",
-        "https://ar-hosting.pages.dev/1751519809887.jpg",
-        "https://ar-hosting.pages.dev/1751519810683.jpg",
-        "https://myappme.shop/img/file_255.jpg",
-        "https://myappme.shop/img/file_256.jpg",
-        "https://myappme.shop/img/file_257.jpg"
+        "https://ar-hosting.pages.dev/1752942103938.jpg",
+        "https://ar-hosting.pages.dev/1752942111453.jpg",
+        "https://ar-hosting.pages.dev/1752942103004.jpg",
+        "https://ar-hosting.pages.dev/1752942106446.jpg",
+        "https://ar-hosting.pages.dev/1752942105659.jpg",
+        "https://ar-hosting.pages.dev/1752942104883.jpg",
+        "https://ar-hosting.pages.dev/1752942110594.jpg",
+        "https://ar-hosting.pages.dev/1752942113175.jpg",
+        "https://ar-hosting.pages.dev/1752942112328.jpg",
     ]
     image_url = random.choice(images)
 
