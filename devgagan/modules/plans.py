@@ -126,7 +126,7 @@ async def give_premium_cmd_handler(client, message):
         await message.reply_text("Usage : /add user_id time (e.g., '1 day for days', '1 hour for hours', or '1 min for minutes', or '1 month for months' or '1 year for year')")
 
 
-@app.on_message(filters.command("transfer"))
+@app.on_message(filters.command("sstmytransfer"))
 async def transfer_premium(client, message):
     if len(message.command) == 2:
         new_user_id = int(message.command[1])  # The user ID to whom premium is transferred
