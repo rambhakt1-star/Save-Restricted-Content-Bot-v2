@@ -193,11 +193,7 @@ async def terms(client, message):
 async def plan(client, message):
     plan_text = (
         "💎 **Upgrade to Premium Plans** 💎\n\n"
-        "Choose a plan to see full details:\n\n"
-        "🔹 Basic Plan – 300 files\n"
-        "🔸 Medium Plan – 500 files\n"
-        "🔶 Pro Plan – 1000 files\n\n"
-        "👇 Tap a button below to view plans:"
+        "👇 Choose a plan to see full details:\n\n"
     )
 
     buttons = InlineKeyboardMarkup(
@@ -216,11 +212,7 @@ async def plan(client, message):
 async def see_plan(client, callback_query):
     plan_text = (
         "💎 **Upgrade to Premium Plans** 💎\n\n"
-        "Choose a plan to see full details:\n\n"
-        "🔹 Basic Plan – 300 files\n"
-        "🔸 Medium Plan – 500 files\n"
-        "🔶 Pro Plan – 1000 files\n\n"
-        "👇 Tap a button below to view plans:"
+        "👇 Choose a plan to see full details:\n\n"
     )
 
     buttons = InlineKeyboardMarkup(
@@ -234,28 +226,28 @@ async def see_plan(client, callback_query):
     await callback_query.message.edit_text(plan_text, reply_markup=buttons)
 
 
-# Callback: Buy Basic Plan
+# 🔹 Buy Basic Plan
 @app.on_callback_query(filters.regex("buy_basic"))
 async def buy_basic_plan(client, callback_query):
     text = (
-        "💎 **Upgrade to Premium** 💎\n\n"
-        "🚀 **Exclusive Premium Basic Features**\n"
+        "💎 Upgrade to Premium 💎\n\n"
+        "🚀 Exclusive Premium Basic Features\n"
         "✅ No need to verify every 3 hours ⏳\n"
         "✅ Bulk mode: Upload up to 300 files 📂\n"
         "✅ Unlimited Leeches\n\n"
 
-        "🪙 **10-Day Plan**\n"
-        "💰 Rs 30 🇮🇳 / **$0.36 USDT**\n\n"
-        "🪙 **20-Day Plan**\n"
-        "💰 Rs 60 🇮🇳 / **$0.72 USDT**\n\n"
-        "🪙 **Monthly Plan**\n"
-        "💰 Rs 90 🇮🇳 / **$1.08 USDT**\n\n"
+        "🪙 10-Day Plan\n"
+        "💰 Rs 30 🇮🇳 / $0.36 USDT\n\n"
+        "🪙 20-Day Plan\n"
+        "💰 Rs 60 🇮🇳 / $0.72 USDT\n\n"
+        "🪙 Monthly Plan\n"
+        "💰 Rs 90 🇮🇳 / $1.08 USDT\n\n"
 
-        "📌 **Payment Methods**:\n"
-        "- QR Code: [Click Here for QR](https://ar-hosting.pages.dev/1753559081448.jpg)\n"
+        "📌 Payment Methods:\n"
+        "- QR Code: [Click Here for QR](https://ar-hosting.pages.dev/1753559081448.jpg) or click /pay\n"
         "- For International payment, Contact Admin\n\n"
 
-        "📤 **After Payment**:\n"
+        "📤 After Payment:\n"
         "1️⃣ Send a payment screenshot below 👇\n"
         "2️⃣ Contact: Admin to complete your purchase 🤝\n\n"
         "💌 We're here for you! 💕"
@@ -263,38 +255,37 @@ async def buy_basic_plan(client, callback_query):
 
     buttons = InlineKeyboardMarkup(
         [
-            [InlineKeyboardButton("🧾 Get QR Code", url="https://ar-hosting.pages.dev/1753559081448.jpg")],
+            [InlineKeyboardButton("💳 Pay Now", callback_data="pay_now")],
             [InlineKeyboardButton("💬 Contact Now", url="https://t.me/sonuporsa")],
-            [InlineKeyboardButton("⬅️ Back to Plans", callback_data="see_plan")],
+            [InlineKeyboardButton("⬅️ Back to Plans", callback_data="see_plan")]
         ]
     )
 
     await callback_query.message.edit_text(text, reply_markup=buttons, disable_web_page_preview=True)
 
-
-# Callback: Buy Medium Plan
+# 🔸 Buy Medium Plan
 @app.on_callback_query(filters.regex("buy_medium"))
 async def buy_medium_plan(client, callback_query):
     text = (
-        "💎 **Upgrade to Premium** 💎\n\n"
-        "🚀 **Exclusive Premium Medium Features**\n"
+        "💎 Upgrade to Premium 💎\n\n"
+        "🚀 Exclusive Premium Medium Features\n"
         "✅ No need to verify every 3 hours ⏳\n"
         "✅ Bulk mode: Upload up to 500 files 📂\n"
         "✅ Priority Admin Support\n"
         "✅ Unlimited Leeches\n\n"
 
-        "🪙 **10-Day Plan**\n"
-        "💰 Rs 50 🇮🇳 / **$0.60 USDT**\n\n"
-        "🪙 **20-Day Plan**\n"
-        "💰 Rs 100 🇮🇳 / **$1.20 USDT**\n\n"
-        "🪙 **Monthly Plan**\n"
-        "💰 Rs 130 🇮🇳 / **$1.56 USDT**\n\n"
+        "🪙 10-Day Plan\n"
+        "💰 Rs 50 🇮🇳 / $0.60 USDT\n\n"
+        "🪙 20-Day Plan\n"
+        "💰 Rs 100 🇮🇳 / $1.20 USDT\n\n"
+        "🪙 Monthly Plan\n"
+        "💰 Rs 130 🇮🇳 / $1.56 USDT\n\n"
 
-        "📌 **Payment Methods**:\n"
-        "- QR Code: [Click Here for QR](https://ar-hosting.pages.dev/1753559081448.jpg)\n"
-        "- For International payment, Contact Admin\n\n"
+        "📌 Payment Methods:\n"
+        "- QR Code: [Click Here for QR](https://ar-hosting.pages.dev/1753559081448.jpg) or click /pay\n"
+        "- For International payments, Contact Admin\n\n"
 
-        "📤 **After Payment**:\n"
+        "📤 After Payment:\n"
         "1️⃣ Send a payment screenshot below 👇\n"
         "2️⃣ Contact: Admin to complete your purchase 🤝\n\n"
         "💌 We're here for you! 💕"
@@ -302,48 +293,47 @@ async def buy_medium_plan(client, callback_query):
 
     buttons = InlineKeyboardMarkup(
         [
-            [InlineKeyboardButton("🧾 Get QR Code", url="https://ar-hosting.pages.dev/1753559081448.jpg")],
+            [InlineKeyboardButton("💳 Pay Now", callback_data="pay_now")],
             [InlineKeyboardButton("💬 Contact Now", url="https://t.me/sonuporsa")],
-            [InlineKeyboardButton("⬅️ Back to Plans", callback_data="see_plan")],
+            [InlineKeyboardButton("⬅️ Back to Plans", callback_data="see_plan")]
         ]
     )
 
     await callback_query.message.edit_text(text, reply_markup=buttons, disable_web_page_preview=True)
 
-
-# Callback: Buy Pro Plan
+# 🔶 Buy Pro Plan
 @app.on_callback_query(filters.regex("buy_pro"))
 async def buy_pro_plan(client, callback_query):
     text = (
-        "💎 **Upgrade to Premium** 💎\n\n"
-        "🚀 **Exclusive Premium Pro Features**\n"
+        "💎 Upgrade to Premium 💎\n\n"
+        "🚀 Exclusive Premium Pro Features\n"
         "✅ No need to verify every 3 hours ⏳\n"
         "✅ Bulk mode: Upload up to 1000 files 📂\n"
         "✅ Priority Admin Support\n"
         "✅ Unlimited Leeches\n\n"
 
-        "🪙 **10-Day Plan**\n"
-        "💰 Rs 100 🇮🇳 / **$1.20 USDT**\n\n"
-        "🪙 **20-Day Plan**\n"
-        "💰 Rs 200 🇮🇳 / **$2.40 USDT**\n\n"
-        "🪙 **Monthly Plan**\n"
-        "💰 Rs 280 🇮🇳 / **$3.36 USDT**\n\n"
+        "🪙 10-Day Plan\n"
+        "💰 Rs 100 🇮🇳 / $1.20 USDT\n\n"
+        "🪙 20-Day Plan\n"
+        "💰 Rs 200 🇮🇳 / $2.40 USDT\n\n"
+        "🪙 Monthly Plan\n"
+        "💰 Rs 280 🇮🇳 / $3.36 USDT\n\n"
 
-        "📌 **Payment Methods**:\n"
-        "- QR Code: [Click Here for QR](https://ar-hosting.pages.dev/1753559081448.jpg)\n"
+        "📌 Payment Methods:\n"
+        "- QR Code: [Click Here for QR](https://ar-hosting.pages.dev/1753559081448.jpg) or click /pay\n"
         "- For International payment, Contact Admin\n\n"
 
-        "📤 **After Payment**:\n"
+        "📤 After Payment:\n"
         "1️⃣ Send a payment screenshot below 👇\n"
         "2️⃣ Contact: Admin to complete your purchase 🤝\n\n"
         "💌 We're here for you! 💕"
-    )
+ )
 
-    buttons = InlineKeyboardMarkup(
+ buttons = InlineKeyboardMarkup(
         [
-            [InlineKeyboardButton("🧾 Get QR Code", url="https://ar-hosting.pages.dev/1753559081448.jpg")],
+            [InlineKeyboardButton("💳 Pay Now", callback_data="pay_now")],
             [InlineKeyboardButton("💬 Contact Now", url="https://t.me/sonuporsa")],
-            [InlineKeyboardButton("⬅️ Back to Plans", callback_data="see_plan")],
+            [InlineKeyboardButton("⬅️ Back to Plans", callback_data="see_plan")]
         ]
     )
 
