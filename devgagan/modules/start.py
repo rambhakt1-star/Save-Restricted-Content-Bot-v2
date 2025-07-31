@@ -12,15 +12,16 @@
 # License: MIT License
 # ---------------------------------------------------
 
-from pyrogram import filters
+from pyrogram import filters, Client 
 from devgagan import app
-from config import OWNER_ID
+from config import OWNER_ID, INDEX_CHANNEL, SCANNER_URL
 from devgagan.core.func import subscribe
 import asyncio
 from devgagan.core.func import *
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Message, BotCommand
 from pyrogram.raw.functions.bots import SetBotInfo
 from pyrogram.raw.types import InputUserSelf
+
 
  
 @app.on_message(filters.command("set"))
