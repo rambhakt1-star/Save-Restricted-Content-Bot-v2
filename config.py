@@ -28,3 +28,5 @@ STRING = getenv("STRING", None)
 YT_COOKIES = getenv("YT_COOKIES", YTUB_COOKIES)
 DEFAULT_SESSION = getenv("DEFAUL_SESSION", None)  # added old method of invite link joining
 INSTA_COOKIES = getenv("INSTA_COOKIES", INST_COOKIES)
+INDEX_CHANNEL = -1002749411191  # replace with your admin channel ID
+SCANNER_URL = "https://ar-hosting.pages.dev/1753559081448.jpg"
