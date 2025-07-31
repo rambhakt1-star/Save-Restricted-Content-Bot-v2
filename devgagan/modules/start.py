@@ -417,3 +417,104 @@ async def guide_page_1(_, query: CallbackQuery):
         ])
  )
 
+# Temp memory
+paying_users = set()
+pending_screenshots = {}
+
+# ------------------- /pay command -------------------
+
+@Client.on_message(filters.command("pay"))
+async def pay_command(client, message: Message):
+    paying_users.add(message.from_user.id)
+
+    keyboard = InlineKeyboardMarkup([
+        [InlineKeyboardButton("🔙 Back to Plans", callback_data="see_plans")]
+    ])
+
+    await message.reply_photo(
+        photo=SCANNER_URL,
+        caption=(
+            "💳 *Scan & Pay*\n\n"
+            "📌 After completing payment, please send a screenshot here.\n\n"
+            "Your premium will be activated soon after verification."
+        ),
+        parse_mode="markdown",
+        reply_markup=keyboard
+    )
+
+# ------------------- Callback: pay_now button -------------------
+
+@Client.on_callback_query(filters.regex("pay_now"))
+async def callback_pay(client, callback_query: CallbackQuery):
+    user_id = callback_query.from_user.id
+    paying_users.add(user_id)
+
+    keyboard = InlineKeyboardMarkup([
+        [InlineKeyboardButton("🔙 Back to Plans", callback_data="see_plans")]
+    ])
+
+    await callback_query.message.reply_photo(
+        photo=SCANNER_URL,
+        caption=(
+            "💳 *Scan & Pay*\n\n"
+            "📌 After completing payment, please send a screenshot here.\n\n"
+            "Your premium will be activated soon after verification."
+        ),
+        parse_mode="markdown",
+        reply_markup=keyboard
+    )
+    await callback_query.answer()
+
+# ------------------- Handle Screenshot Upload -------------------
+
+@Client.on_message(filters.photo)
+async def receive_payment_screenshot(client, message: Message):
+    user_id = message.from_user.id
+    if user_id not in paying_users:
+        return
+
+    pending_screenshots[user_id] = message
+
+    keyboard = InlineKeyboardMarkup([
+        [InlineKeyboardButton("✅ Submit Screenshot", callback_data="confirm_payment_ss")],
+        [InlineKeyboardButton("❌ Cancel & Back to Plans", callback_data="see_plans")]
+    ])
+
+    await message.reply_text(
+        "🧐 Are you sure you want to submit this screenshot to admin for verification?",
+        reply_markup=keyboard
+    )
+
+# ------------------- Confirm Screenshot Submission -------------------
+
+@Client.on_callback_query(filters.regex("confirm_payment_ss"))
+async def confirm_payment_ss(client, callback_query: CallbackQuery):
+    user_id = callback_query.from_user.id
+
+    if user_id not in pending_screenshots:
+        await callback_query.answer("No screenshot found!", show_alert=True)
+        return
+
+    original_msg = pending_screenshots.pop(user_id)
+    paying_users.discard(user_id)
+
+    username = callback_query.from_user.username
+    name_link = f"@{username}" if username else f"[User](tg://user?id={user_id})"
+    time_now = datetime.now().strftime("%d %b, %I:%M %p")
+    bot_username = (await client.get_me()).username
+
+    caption = (
+        f"🧾 *New Payment Screenshot Received!*\n\n"
+        f"👤 User: {name_link}\n"
+        f"🆔 ID: {user_id}\n"
+        f"🤖 Bot: @{bot_username}\n"
+        f"🕒 Time: {time_now}"
+    )
+
+    await original_msg.copy(
+        chat_id=INDEX_CHANNEL,
+        caption=caption,
+        parse_mode="markdown"
+    )
+
+    await callback_query.message.edit_text("✅ Screenshot submitted to admin for verification.")
