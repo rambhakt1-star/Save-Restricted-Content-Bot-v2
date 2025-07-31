@@ -21,7 +21,7 @@ from devgagan.core.func import *
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, Message, BotCommand
 from pyrogram.raw.functions.bots import SetBotInfo
 from pyrogram.raw.types import InputUserSelf
-
+from datetime import datetime
 
  
 @app.on_message(filters.command("set"))
@@ -423,7 +423,7 @@ pending_screenshots = {}
 
 # ------------------- /pay command -------------------
 
-@Client.on_message(filters.command("pay"))
+@app.on_message(filters.command("pay"))
 async def pay_command(client, message: Message):
     paying_users.add(message.from_user.id)
 
@@ -444,7 +444,7 @@ async def pay_command(client, message: Message):
 
 # ------------------- Callback: pay_now button -------------------
 
-@Client.on_callback_query(filters.regex("pay_now"))
+@app.on_callback_query(filters.regex("pay_now"))
 async def callback_pay(client, callback_query: CallbackQuery):
     user_id = callback_query.from_user.id
     paying_users.add(user_id)
@@ -467,7 +467,7 @@ async def callback_pay(client, callback_query: CallbackQuery):
 
 # ------------------- Handle Screenshot Upload -------------------
 
-@Client.on_message(filters.photo)
+@app.on_message(filters.photo)
 async def receive_payment_screenshot(client, message: Message):
     user_id = message.from_user.id
     if user_id not in paying_users:
@@ -487,7 +487,7 @@ async def receive_payment_screenshot(client, message: Message):
 
 # ------------------- Confirm Screenshot Submission -------------------
 
-@Client.on_callback_query(filters.regex("confirm_payment_ss"))
+@app.on_callback_query(filters.regex("confirm_payment_ss"))
 async def confirm_payment_ss(client, callback_query: CallbackQuery):
     user_id = callback_query.from_user.id
 
