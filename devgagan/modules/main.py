@@ -92,7 +92,7 @@ async def single_link(_, message):
 
     # Check freemium limits
     if await chk_user(message, user_id) == 1 and FREEMIUM_LIMIT == 0 and user_id not in OWNER_ID and not await is_user_verified(user_id):
-        await message.reply("Freemium service is currently not available. Upgrade to premium for access.")
+        await message.reply("Freemium service is currently not available, /upgrade to premium for access.")
         return
 
     # Check cooldown
@@ -186,7 +186,7 @@ async def batch_link(_, message):
 
     freecheck = await chk_user(message, user_id)
     if freecheck == 1 and FREEMIUM_LIMIT == 0 and user_id not in OWNER_ID and not await is_user_verified(user_id):
-        await message.reply("Freemium service is currently not available. Upgrade to premium for access.")
+        await message.reply("Freemium service is currently not available, /upgrade to premium for access.")
         return
 
     max_batch_size = FREEMIUM_LIMIT if freecheck == 1 else PREMIUM_LIMIT
