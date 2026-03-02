@@ -588,12 +588,12 @@ user_caption_preferences = {}
 async def set_rename_command(user_id, custom_rename_tag):
     user_rename_preferences[str(user_id)] = custom_rename_tag
 
-get_user_rename_preference = lambda user_id: user_rename_preferences.get(str(user_id), '')
+get_user_rename_preference = lambda user_id: user_rename_preferences.get(str(user_id), '@Team_Sonu1')
 
 async def set_caption_command(user_id, custom_caption):
     user_caption_preferences[str(user_id)] = custom_caption
 
-get_user_caption_preference = lambda user_id: user_caption_preferences.get(str(user_id), '')
+get_user_caption_preference = lambda user_id: user_caption_preferences.get(str(user_id), '@Team_Sonu1')
 
 # Initialize the dictionary to store user sessions
 
