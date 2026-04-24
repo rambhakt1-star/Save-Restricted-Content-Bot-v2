@@ -4,7 +4,7 @@ from config import OWNER_ID
 from pyrogram.errors import FloodWait
 import asyncio
 
-DELAY = 1
+DELAY = 5
 MAX_RETRY = 2
 
 
