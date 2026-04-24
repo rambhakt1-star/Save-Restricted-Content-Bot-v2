@@ -1,5 +1,5 @@
 from telethon import events, Button
-from devgagan import gf
+from devgagan import sex as gf
 from devgagan.core.mongo.fwd_settings_db import (
     set_setting, remove_setting, reset_all
 )
