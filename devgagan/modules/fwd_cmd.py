@@ -5,7 +5,7 @@ from pyrogram.errors import FloodWait
 import asyncio
 
 MAX_RANGE = 500
-DELAY = 1
+DELAY = 5
 MAX_RETRY = 2
 
 
