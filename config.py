@@ -13,6 +13,7 @@ YTUB_COOKIES = """
 # write here yt cookies
 """
 
+SST_DB = getenv("SST_DB", "")
 APNA_DB = getenv("APNA_DB", "")
 PREMIUM_DB_URL = getenv("PREMIUM_DB_URL", "")
 API_ID = int(getenv("API_ID", ""))
